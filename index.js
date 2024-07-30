@@ -32,7 +32,7 @@ app.get("/:domainName", async (req, res) => {
           condition: "new",
           price: `${ele?.compare_at_price} INR`,
           link: `https://${domainName}/products/${element?.handle}`,
-          image_link: element?.images?.[0]?.src,
+          image_link: element?.images?.map((img) => img.src).join(","),
           brand: element?.vendor,
           sale_price: `${ele?.price} INR`,
           item_group_id: element?.id,
