@@ -6,7 +6,11 @@ const app = express();
 const PORT = process.env.PORT || 8080;
 
 app.get("/", async (req, res) => {
-  const domainName = req?.query?.domainName;
+  res.send("Working fine");
+});
+
+app.get("/:domainName", async (req, res) => {
+  const { domainName } = req?.params;
   if (!domainName) {
     return res.status(400).send("domainName query parameter is required");
   }
