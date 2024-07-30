@@ -30,11 +30,11 @@ app.get("/:domainName", async (req, res) => {
           description: element?.body_html,
           availability: ele?.available ? "in stock" : "out of stock",
           condition: "new",
-          price: `${ele?.price} INR`,
+          price: `${ele?.compare_at_price} INR`,
           link: `https://${domainName}/products/${element?.handle}`,
           image_link: element?.images?.[0]?.src,
           brand: element?.vendor,
-          sale_price: `${ele?.compare_at_price} INR`,
+          sale_price: `${ele?.price} INR`,
           item_group_id: element?.id,
         };
         dataToBeExported.push(item);
