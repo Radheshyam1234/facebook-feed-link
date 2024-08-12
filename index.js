@@ -32,10 +32,14 @@ app.get("/:domainName", async (req, res) => {
           condition: "new",
           price: `${ele?.compare_at_price} INR`,
           link: `https://${domainName}/products/${element?.handle}`,
-          image_link: element?.images?.map((img) => img.src).join(","),
+          image_link: element?.images?.[0]?.src,
           brand: element?.vendor,
           sale_price: `${ele?.price} INR`,
           item_group_id: element?.id,
+          additional_image_link: element?.images
+            ?.slice(1)
+            ?.map((img) => img.src)
+            .join(","),
         };
         dataToBeExported.push(item);
       });
@@ -54,6 +58,7 @@ app.get("/:domainName", async (req, res) => {
         "brand",
         "sale_price",
         "item_group_id",
+        "additional_image_link",
       ],
     });
     const csv = json2csvParser.parse(dataToBeExported);
